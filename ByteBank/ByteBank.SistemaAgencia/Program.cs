@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Humanizer;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -12,20 +13,18 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ContaCorrente conta = new ContaCorrente(0001,7687150);
+            DateTime dataFimPagamento = new DateTime(2018, 8, 17);
+            DateTime dataCorrente = DateTime.Now;
 
-            // FuncionarioAutenticavel implementa a AutenticacaoHelper
-            // no mesmo projeto, portanto não temos erros aqui
-            FuncionarioAutenticavel carlos = null;
-            carlos.Autenticar("testesenha");
+            TimeSpan diferenca = TimeSpan.FromMinutes(40);
 
-            // AutenticacaoHelper é uma classe interna
-            // portanto não pode ser instanciada fora
-            // de seu projeto inicial
-            //AutenticacaoHelper autenticacao = new AutenticacaoHelper();
-            //autenticacao.CompararSenhas("senha true","senha false");
+            string mensagem = "Vencimento em: " + TimeSpanHumanizeExtensions.Humanize(diferenca);
 
-            Console.WriteLine(conta.Numero);
+            Console.WriteLine(mensagem);
+
+            Console.WriteLine(dataCorrente);
+            Console.WriteLine(dataFimPagamento);
+
             Console.ReadLine();
         }
     }
